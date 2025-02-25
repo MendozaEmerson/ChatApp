@@ -1,5 +1,4 @@
 import 'package:dio/dio.dart';
-import 'package:flutter/material.dart';
 import 'package:yes_no_app/domain/entities/message.dart';
 import 'package:yes_no_app/infrastructure/models/yes_no_model.dart';
 
