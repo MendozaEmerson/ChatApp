@@ -24,11 +24,11 @@ class HerMssgBubble extends StatelessWidget {
           ),
         ),
         const SizedBox(
-          height: 20,
+          height: 8,
         ),
         _ImageBubble(),
         SizedBox(
-          height: 20,
+          height: 8,
         )
       ],
     );
