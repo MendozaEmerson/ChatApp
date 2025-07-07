@@ -1,4 +1,4 @@
-name: Build and Analyze
+name: Analyze with SonarQube
 
 on:
   push:
@@ -6,12 +6,12 @@ on:
       - main
 
 jobs:
-  build:
-    name: Build and Analyze Flutter
+  analyze:
+    name: Build and Analyze Flutter Project
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
+      - name: Checkout Repository
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
@@ -19,12 +19,12 @@ jobs:
       - name: Set up Flutter
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: '3.22.1'
+          flutter-version: '3.22.1'  #Esta versión incluye Dart 3.6.1
 
       - name: Install dependencies
         run: flutter pub get
 
-      - name: Run analyzer
+      - name: Analyze with Flutter
         run: flutter analyze
 
       - name: SonarQube Scan
@@ -32,9 +32,3 @@ jobs:
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
-
-      # Opcional: fallar si falla el Quality Gate
-      # - name: Check Quality Gate
-      #   uses: SonarSource/sonarqube-quality-gate-action@v1
-      #   env:
-      #     SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
